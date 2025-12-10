@@ -1,7 +1,34 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { resolve } from "path";
+import { type } from "os";
 
 export default function Step1() {
+  const formSchema = z.object({
+    username: z
+      .string()
+      .min(1, "Username is required")
+      .max(15, "Username must be at most 15 characters"),
+    firstName: z.string().min(1, "First name is required"),
+    lastName: z.string().min(1, "Last name is required"),
+  });
+
+  type FormSchemaType = z.infer<typeof formSchema>;
+
+  const formPage = () => {
+    const form = useForm<FormSchemaType>({
+      resolver: zodResolver(formSchema),
+      defaulValues: {
+        username: "",
+        firstName: "",
+        lastName: "",
+      },
+    });
+  };
+
   return (
     <div className="space-y-5">
       <div className="space-y-2">
@@ -11,7 +38,7 @@ export default function Step1() {
         <Input
           id="firstName"
           type="text"
-          placeholder="e.g. John"
+          placeholder="e.g. Simon"
           className="h-12"
         />
       </div>
@@ -23,7 +50,7 @@ export default function Step1() {
         <Input
           id="lastName"
           type="text"
-          placeholder="e.g. Doe"
+          placeholder="e.g. Riley"
           className="h-12"
         />
       </div>
@@ -35,7 +62,7 @@ export default function Step1() {
         <Input
           id="username"
           type="text"
-          placeholder="e.g. johndoe123"
+          placeholder="e.g. ghost_07"
           className="h-12"
         />
       </div>

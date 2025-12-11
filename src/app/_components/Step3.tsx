@@ -1,7 +1,7 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-export default function Step3() {
+export const Step3 = () => {
   return (
     <div className="space-y-5">
       <div className="space-y-2">
@@ -41,4 +41,4 @@ export default function Step3() {
       </div>
     </div>
   );
-}
+};

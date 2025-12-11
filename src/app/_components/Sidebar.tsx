@@ -1,6 +1,6 @@
 export default function Sidebar() {
   return (
-    <div className="bg-gradient-to-b from-purple-600 to-blue-500 p-8 w-1/3 text-white">
+    <div className="bg-linear-to-b from-purple-600 to-blue-500 p-8 w-1/3 text-white">
       <div className="mb-8">
         <svg className="w-10 h-10" viewBox="0 0 40 40" fill="none">
           <path

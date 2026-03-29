@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { useContext } from "react";
+
 
 const formSchema = z.object({
   username: z
@@ -33,9 +33,6 @@ export type StepProps = {
 };
 
 export const Step1 = ({ onNext }: StepProps) => {
-
-const {data, setData, handleNext} = useContext(StepContext);
-
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -46,7 +43,8 @@ const {data, setData, handleNext} = useContext(StepContext);
   });
 
   const onSubmit = (values: FormSchemaType) => {
-    setData((prev) =({}))
+    console.log(values);
+    onNext?.();
   };
 
   return (
@@ -118,8 +116,8 @@ const {data, setData, handleNext} = useContext(StepContext);
           )}
         />
         <Button
+          type="submit"
           className="bg-black text-white w-full h-12 px-6"
-          onClick={onNext}
         >
           Continue 1/3
           <ArrowRight className="ml-2 h-4 w-4" />

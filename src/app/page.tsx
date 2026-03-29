@@ -17,8 +17,8 @@ export default function Home() {
         <div className="max-w-md mx-auto">
           <FormHeader />
           {step === 1 && <Step1 onNext={() => setStep(2)} />}
-          {step === 2 && <Step2 onNext={() => setStep(3)} />}
-          {step === 3 && <Step3 onNext={() => setStep(4)} />}
+          {step === 2 && <Step2 onNext={() => setStep(3)} onBack={() => setStep(1)} />}
+          {step === 3 && <Step3 onNext={() => setStep(4)} onBack={() => setStep(2)} />}
           <div className="flex justify-end mt-8"></div>
         </div>
       </div>

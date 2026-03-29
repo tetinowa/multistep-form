@@ -37,9 +37,10 @@ type FormSchemaType = z.infer<typeof formSchema>;
 
 export type StepProps = {
   onNext?: () => void;
+  onBack?: () => void;
 };
 
-export const Step2 = ({ onNext }: StepProps) => {
+export const Step2 = ({ onNext, onBack }: StepProps) => {
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -52,6 +53,7 @@ export const Step2 = ({ onNext }: StepProps) => {
 
   const onSubmit = (values: FormSchemaType) => {
     console.log(values);
+    onNext?.();
   };
 
   return (
@@ -146,16 +148,17 @@ export const Step2 = ({ onNext }: StepProps) => {
         />
         <div className="flex gap-2 justify-between">
           <Button
+            type="button"
             variant="outline"
             className="w-1/3 h-12 px-6"
-            onClick={onNext}
+            onClick={onBack}
           >
+            <ArrowLeft className="mr-2 h-4 w-4" />
             Back
-            <ArrowLeft className="ml-2 h-4 w-4" />
           </Button>
           <Button
+            type="submit"
             className="w-2/3 bg-black text-white h-12 px-6"
-            onClick={onNext}
           >
             Continue 2/3
             <ArrowRight className="ml-2 h-4 w-4" />
